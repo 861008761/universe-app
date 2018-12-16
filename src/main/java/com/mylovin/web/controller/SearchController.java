@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -36,7 +37,14 @@ public class SearchController {
         Map<String, Object> result = searchService.search(keyWord);
         PageUtil page = new PageUtil();
         page.setList((ArrayList)result.get("dataList"));
-        return JSON.toJSONString(page.getList());
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        //从configs中临时取出并删除
+        map.put("total", ((ArrayList) result.get("dataList")).size());
+        //从数据库中查询得到的结果集
+        map.put("rows", result.get("dataList"));
+
+        return JSON.toJSONString(map);
     }
 
     @RequestMapping("/search2")

@@ -46,7 +46,8 @@
                 search: false,  //是否启用查询
                 showColumns: true,  //显示下拉框勾选要显示的列
                 showRefresh: true,  //显示刷新按钮
-                sidePagination: "client", //客户端分页
+                //sidePagination: "client", //客户端分页
+                sidePagination: "server", //服务器端分页
                 height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
                 uniqueId: "rowkey",                 //每一行的唯一标识，一般为主键列
                 showToggle: true,                   //是否显示详细视图和列表视图的切换按钮

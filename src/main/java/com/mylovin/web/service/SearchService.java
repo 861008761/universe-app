@@ -20,7 +20,7 @@ public class SearchService {
         String[] lines = FileRead.readFileByLinesWithLength(file, count);
         //写hbase和es
         for (String line :lines) {
-            String rowKey = UUID.randomUUID().toString().replace("-", "").toLowerCase();;
+            String rowKey = UUID.randomUUID().toString().replace("-", "").toLowerCase();
             String[] arr = line.split("##");
             HBaseUtil.put(Constants.HBASE_TABLE_NAME_COMMENT, rowKey, arr[0], arr[1], arr[2]);
             Comment comment = new Comment(rowKey, arr[0], arr[1], arr[2]);
@@ -32,7 +32,7 @@ public class SearchService {
         String index = "comments";
         String type = "comment";
         int start = 0;
-        int row = 10;
+        int row = 100;
         Map<String, Object> result = ElasticSearchUtil.search(key, index, type, start, row);
         return result;
     }
